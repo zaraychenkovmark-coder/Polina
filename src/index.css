@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 20 15% 92%;
+    --foreground: 0 0% 15%;
+
+    --card: 15 8% 88%;
+    --card-foreground: 0 0% 15%;
+
+    --popover: 20 15% 92%;
+    --popover-foreground: 0 0% 15%;
+
+    --primary: 0 55% 35%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 25 20% 75%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 20 10% 80%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 15 25% 55%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 15% 70%;
+    --input: 20 15% 70%;
+    --ring: 0 55% 35%;
+
+    --radius: 0.5rem;
+
+    --glass-bg: 15 8% 88% / 0.6;
+    --glass-border: 0 55% 35% / 0.3;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(0 55% 35%), hsl(15 45% 30%));
+    --gradient-soft: linear-gradient(180deg, hsl(20 15% 92%), hsl(25 20% 85%));
+    
+    --shadow-soft: 0 8px 32px hsl(0 10% 10% / 0.15);
+    --shadow-glow: 0 0 40px hsl(0 55% 35% / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 10% 12%;
+    --foreground: 0 0% 90%;
+
+    --card: 0 8% 18%;
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 10% 12%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 0 60% 40%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 20 15% 25%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 8% 22%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 15 35% 45%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 8% 28%;
+    --input: 0 8% 28%;
+    --ring: 0 60% 40%;
+    
+    --glass-bg: 0 0% 8% / 0.5;
+    --glass-border: 0 60% 40% / 0.4;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+    background: 
+      linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        hsl(var(--border) / 0.03) 2px,
+        hsl(var(--border) / 0.03) 4px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  h1, h2, h3 {
+    @apply font-playfair;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-soft);
+    position: relative;
+  }
+  
+  .glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.2), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .glow-on-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .glow-on-hover:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+  
+  .sparkle {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sparkle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, transparent 70%);
+    animation: sparkle 3s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+}
