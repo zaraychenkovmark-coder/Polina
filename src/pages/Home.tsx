@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 
 const BASE_URL = import.meta.env.BASE_URL;
-const polina1Image = `${BASE_URL}img/polina1.jpg`;
-const polina2Image = `${BASE_URL}img/polina2.jpg`;
-const polina3Image = `${BASE_URL}img/polina5.jpg`;
+// Функция для создания правильного пути к файлу
+const getAssetPath = (path: string) => {
+  return BASE_URL + path.split('/').map(segment => encodeURIComponent(segment)).join('/');
+};
+
+const polina1Image = getAssetPath("img/polina1.jpg");
+const polina2Image = getAssetPath("img/polina2.jpg");
+const polina3Image = getAssetPath("img/polina5.jpg");
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);

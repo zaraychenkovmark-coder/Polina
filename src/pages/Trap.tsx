@@ -19,6 +19,11 @@ const formatTime = (seconds: number): string => {
 
 const BASE_URL = import.meta.env.BASE_URL;
 
+// Функция для создания правильного пути к файлу
+const getAssetPath = (path: string) => {
+  return BASE_URL + path.split('/').map(segment => encodeURIComponent(segment)).join('/');
+};
+
 const Trap = () => {
   const [playingTrack, setPlayingTrack] = useState<number | null>(null);
   const [loadedTrack, setLoadedTrack] = useState<number | null>(null);
@@ -28,13 +33,13 @@ const Trap = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const tracks: Track[] = [
-    { title: "Intro", duration: "0:00", cover: "I", src: `${BASE_URL}trap/intro.mp3` },
-    { title: "Lizer - В жизни так бывает", duration: "0:00", cover: "L", src: `${BASE_URL}trap/Lizer - В жизни так бывает.mp3` },
-    { title: "FACE - Расстояние", duration: "0:00", cover: "F", src: `${BASE_URL}trap/FACE - Расстояние.mp3` },
-    { title: "Название излишне)", duration: "0:00", cover: "Н", src: `${BASE_URL}trap/Название излишне).mp3` },
-    { title: "whole lotta swag - страгл", duration: "0:00", cover: "W", src: `${BASE_URL}trap/whole lotta swag - страгл.mp3` },
-    { title: "Бонус", duration: "0:00", cover: "Б", src: `${BASE_URL}trap/Бонус.mp3` },
-    { title: "Outro", duration: "0:00", cover: "O", src: `${BASE_URL}trap/Outro.mp3` },
+    { title: "Intro", duration: "0:00", cover: "I", src: getAssetPath("trap/intro.mp3") },
+    { title: "Lizer - В жизни так бывает", duration: "0:00", cover: "L", src: getAssetPath("trap/Lizer - В жизни так бывает.mp3") },
+    { title: "FACE - Расстояние", duration: "0:00", cover: "F", src: getAssetPath("trap/FACE - Расстояние.mp3") },
+    { title: "Название излишне)", duration: "0:00", cover: "Н", src: getAssetPath("trap/Название излишне).mp3") },
+    { title: "whole lotta swag - страгл", duration: "0:00", cover: "W", src: getAssetPath("trap/whole lotta swag - страгл.mp3") },
+    { title: "Бонус", duration: "0:00", cover: "Б", src: getAssetPath("trap/Бонус.mp3") },
+    { title: "Outro", duration: "0:00", cover: "O", src: getAssetPath("trap/Outro.mp3") },
   ];
 
   useEffect(() => {
@@ -133,7 +138,7 @@ const Trap = () => {
             </p>
             <div className="flex justify-center mb-8">
               <img 
-                src={`${BASE_URL}img/обложка.jpg`}
+                src={getAssetPath("img/обложка.jpg")}
                 alt="Обложка альбома" 
                 className="w-full max-w-md rounded-2xl shadow-lg glow-on-hover"
               />
@@ -159,7 +164,7 @@ const Trap = () => {
                     }`}
                   >
                     <img 
-                      src={`${BASE_URL}img/обложка.jpg`}
+                      src={getAssetPath("img/обложка.jpg")}
                       alt={track.title}
                       className="w-full h-full object-cover"
                     />
