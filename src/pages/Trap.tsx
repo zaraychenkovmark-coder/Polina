@@ -17,6 +17,8 @@ const formatTime = (seconds: number): string => {
   return `${mins}:${secs.toString().padStart(2, "0")}`;
 };
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const Trap = () => {
   const [playingTrack, setPlayingTrack] = useState<number | null>(null);
   const [loadedTrack, setLoadedTrack] = useState<number | null>(null);
@@ -26,13 +28,13 @@ const Trap = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const tracks: Track[] = [
-    { title: "Intro", duration: "0:00", cover: "I", src: "/trap/intro.mp3" },
-    { title: "Lizer - В жизни так бывает", duration: "0:00", cover: "L", src: "/trap/Lizer - В жизни так бывает.mp3" },
-    { title: "FACE - Расстояние", duration: "0:00", cover: "F", src: "/trap/FACE - Расстояние.mp3" },
-    { title: "Название излишне)", duration: "0:00", cover: "Н", src: "/trap/Название излишне).mp3" },
-    { title: "whole lotta swag - страгл", duration: "0:00", cover: "W", src: "/trap/whole lotta swag - страгл.mp3" },
-    { title: "Бонус", duration: "0:00", cover: "Б", src: "/trap/Бонус.mp3" },
-    { title: "Outro", duration: "0:00", cover: "O", src: "/trap/Outro.mp3" },
+    { title: "Intro", duration: "0:00", cover: "I", src: `${BASE_URL}trap/intro.mp3` },
+    { title: "Lizer - В жизни так бывает", duration: "0:00", cover: "L", src: `${BASE_URL}trap/Lizer - В жизни так бывает.mp3` },
+    { title: "FACE - Расстояние", duration: "0:00", cover: "F", src: `${BASE_URL}trap/FACE - Расстояние.mp3` },
+    { title: "Название излишне)", duration: "0:00", cover: "Н", src: `${BASE_URL}trap/Название излишне).mp3` },
+    { title: "whole lotta swag - страгл", duration: "0:00", cover: "W", src: `${BASE_URL}trap/whole lotta swag - страгл.mp3` },
+    { title: "Бонус", duration: "0:00", cover: "Б", src: `${BASE_URL}trap/Бонус.mp3` },
+    { title: "Outro", duration: "0:00", cover: "O", src: `${BASE_URL}trap/Outro.mp3` },
   ];
 
   useEffect(() => {
@@ -131,7 +133,7 @@ const Trap = () => {
             </p>
             <div className="flex justify-center mb-8">
               <img 
-                src="/img/обложка.jpg" 
+                src={`${BASE_URL}img/обложка.jpg`}
                 alt="Обложка альбома" 
                 className="w-full max-w-md rounded-2xl shadow-lg glow-on-hover"
               />
@@ -157,7 +159,7 @@ const Trap = () => {
                     }`}
                   >
                     <img 
-                      src="/img/обложка.jpg" 
+                      src={`${BASE_URL}img/обложка.jpg`}
                       alt={track.title}
                       className="w-full h-full object-cover"
                     />

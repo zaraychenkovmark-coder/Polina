@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
-import polina1Image from "/img/polina1.jpg";
-import polina2Image from "/img/polina2.jpg";
-import polina3Image from "/img/polina5.jpg";
+
+const BASE_URL = import.meta.env.BASE_URL;
+const polina1Image = `${BASE_URL}img/polina1.jpg`;
+const polina2Image = `${BASE_URL}img/polina2.jpg`;
+const polina3Image = `${BASE_URL}img/polina5.jpg`;
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
